@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import QuizView from './components/QuizView';
+import ScoreView from './components/ScoreView';
 
 function App() {
+  const [isQuizOver,setIsQuizOver]= useState(false)
+  const [score,setScore]=useState(0)
+  const [ currentQuestion,setCurrentQuestion]=useState(0)
+
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      {
+        isQuizOver? 
+        <ScoreView setIsQuizOver={setIsQuizOver} score={score} setCurrentQuestion={setCurrentQuestion} setScore={setScore} />: 
+        <QuizView setIsQuizOver={setIsQuizOver} score={score} setScore={setScore} setCurrentQuestion={setCurrentQuestion} currentQuestion={currentQuestion}/>
+
+      }
     </div>
   );
 }
